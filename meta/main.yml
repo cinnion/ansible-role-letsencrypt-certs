@@ -1,0 +1,24 @@
+---
+galaxy_info:
+  role_name: letsencrypt-certs
+  author: cinnion
+  description: Installs certificates obtained from Let's Encrypt using certbot
+  license: Apache v2.0
+  min_ansible_version: 2.6
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+  galaxy_tags:
+    - certificates
+    - https
+    - ldaps
+    - letsencrypt
+    - networking
+    - security
+    - ssl
+    - system
+
+dependencies: []
+...
