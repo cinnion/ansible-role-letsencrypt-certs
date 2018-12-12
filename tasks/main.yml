@@ -1,0 +1,14 @@
+- name: testing
+  debug:
+    msg: "Certificates is {{ certificates | list }}"
+  when: certificates is defined
+
+- name: template
+  synchronize:
+    mode: push
+    src: /etc/letsencrypt/
+    dest: /etc/letsencrypt/
+    copy_links: yes
+    rsync_opts: "{{ lookup('template', 'rsync_opts.j2') | from_yaml }}"
+  when: certificates is defined
+...

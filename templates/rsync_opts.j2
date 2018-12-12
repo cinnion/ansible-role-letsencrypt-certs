@@ -1,0 +1,11 @@
+#jinja2: trim_blocks: True, lstrip_blocks: True
+    - "--include=archive/"
+{% for certificate in certificates %}
+    - "--include=archive/{{certificate}}/"
+    - "--include=archive/{{certificate}}/**"
+{% endfor %}
+    - "--include=live/"
+{% for certificate in certificates %}
+    - "--include=live/{{certificate}}/"
+    - "--include=live/{{certificate}}/**"
+{% endfor %}
