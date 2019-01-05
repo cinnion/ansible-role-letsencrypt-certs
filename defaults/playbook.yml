@@ -1,0 +1,11 @@
+---
+# Example playbook using the letsencrypt-certs role
+- hosts: all
+
+  roles:
+    - role: letsencrypt-certs
+      when:
+        - ( certificates | default([]) ) | length > 0
+        - ansible_facts['os_family'] is defined
+        - ansible_facts['os_family'] == 'RedHat'
+...
