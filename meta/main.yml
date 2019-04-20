@@ -20,5 +20,6 @@ galaxy_info:
     - ssl
     - system
 
-dependencies: []
+dependencies:
+  - ansible-merge-vars
 ...

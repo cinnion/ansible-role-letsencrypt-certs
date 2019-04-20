@@ -1,0 +1,57 @@
+---
+# Tasks associated with actually pushing certificates when they exist
+
+- name: Show certificates
+  debug:
+    msg: "Certificates is {{ certificates | list }}"
+    verbosity: 1
+  when: certificates is defined
+
+- name: Show certificate services
+  debug:
+    msg: "Certificate services is {{ certificate_services | list }}"
+    verbosity: 1
+  when: certificate_services is defined
+
+- name: Debug
+  vars:
+    msg: |
+       Inventory Hostname:
+       {{ inventory_hostname }}
+
+       Module Variables ("vars"):
+       --------------------------------
+       {{ vars | to_nice_json }}
+
+       Environment Variables ("environment"):
+       --------------------------------
+       {{ environment | to_nice_json }}
+
+       GROUP NAMES Variables ("group_names"):
+       --------------------------------
+       {{ group_names | to_nice_json }}
+
+       GROUPS Variables ("groups"):
+       --------------------------------
+       {{ groups | to_nice_json }}
+
+       HOST Variables ("hostvars"):
+       --------------------------------
+       {{ hostvars | to_nice_json }}
+
+  debug:
+    msg: "{{ msg.split('\n') }}"
+    verbosity: 6
+
+- name: template
+  synchronize:
+    mode: push
+    src: /etc/letsencrypt/
+    dest: /etc/letsencrypt/
+    copy_links: true
+    rsync_opts: "{{ lookup('template', 'rsync_opts.j2') | from_yaml }}"
+  when:
+    - certificates is defined
+    - inventory_hostname != 'resune'
+  notify: Restart services using certificates
+...

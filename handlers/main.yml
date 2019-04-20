@@ -1,2 +1,7 @@
 ---
 # handlers file for letsencrypt-certs
+- name: Restart services using certificates
+  service:
+    name: "{{item}}"
+    state: restarted
+  with_items: "{{certificate_services | default(['httpd'])}}"
