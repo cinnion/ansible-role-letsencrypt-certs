@@ -16,10 +16,10 @@ where this role comes onto the stage.
 
 ## Requirements
 
-This role has been developed using Ansible 2.6, and presently only works with
-RHEL/CentOS 6.x and 7.x. Adapting it to other distros, or even other
-OSes should not be an issue; it is just that I do not presently use
-anything else.
+This role has been developed using Ansible 2.9, and presently only
+works with RHEL/CentOS/Rocky between 6.x and 9.x. Adapting it to other
+distros, or even other OSes should not be an issue; it is just that I
+do not presently use anything else.
 
 It also does not address the setup/execution of a client such as
 [cerbot](https://certbot.eff.org/), nor does it address the initial
